@@ -24,8 +24,8 @@
 // ==/UserScript==
 
 // ==OpenUserJS==
-// @author              HaleShaw
-// @collaborator        HaleShaw
+// @author             HaleShaw
+// @collaborator       HaleShaw
 // ==/OpenUserJS==
 
 (function () {
