@@ -1,3 +1,3 @@
 # TM-ALGreasyFork
 
-Tampermonkey-Automatically Login to Greasy Fork
+Tampermonkey-Automatically Login to Greasy Fork by GitHub.
