@@ -2,11 +2,11 @@
 // @name               自动登录到GreasyFork
 // @name:zh-CN         自动登录到GreasyFork
 // @name:en            Automatically login to GreasyFork by GitHub.
-// @description        用GitHub自动登录到GreasyFork。
-// @description:zh-CN  用GitHub自动登录到GreasyFork。
+// @description        通过GitHub自动登录到GreasyFork。
+// @description:zh-CN  通过GitHub自动登录到GreasyFork。
 // @description:en     Automatically login to GreasyFork by GitHub.
 // @namespace          https://github.com/HaleShaw
-// @version            1.0.2
+// @version            1.0.3
 // @author             HaleShaw
 // @copyright          2020+, HaleShaw (https://github.com/HaleShaw)
 // @license            AGPL-3.0-or-later
@@ -15,7 +15,7 @@
 // @downloadURL        https://github.com/HaleShaw/TM-ALGreasyFork/raw/master/ALGreasyFork.user.js
 // @updateURL          https://github.com/HaleShaw/TM-ALGreasyFork/raw/master/ALGreasyFork.user.js
 // @contributionURL    https://www.jianwudao.com/
-// @icon               https://greasyfork.org/packs/media/images/blacklogo16-5421a97c75656cecbe2befcec0778a96.png
+// @icon               data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAYFBMVEUAAAAAAAAAAAAAAAAAAAAAAAABAQEAAAD///8FBQUQEBAMDAzy8vLq6uoUFBTj4+Pf398ZGRn19fXu7u5/f390dHQ9PT0jIyPl5eXk5OTExMS1tbWmpqagoKApKSkfHx9pXf6IAAAAB3RSTlMA+tmelyPQ+DFQWAAAAIZJREFUGNNlz9cOwyAMQFEzHJuR1Yzu9v//ssagNlLvC9LBSAZK6K0x1iO03B5Ic6B19BqbdHpPUziPvxnc3/NBEHzs52EK66WKB0tJ5Mp8V7BgSGRl5qeCERDJAn2qYMsRb4+Fl6hPPNXiibOIB6TWIJIIAdxXMm+urt6Km65+mCn3f9//ABblB2YEl8VXAAAAAElFTkSuQmCC
 // @require            https://greasyfork.org/scripts/398010-commonutils/code/CommonUtils.js?version=781197
 // @match              https://greasyfork.org/*
 // @compatible         Chrome
@@ -32,7 +32,7 @@
   'use strict';
 
   const mainStyle = `
-  #site-name > a > img {
+  #site-name img {
     width: 32px;
     height: 32px;
   }
@@ -112,7 +112,11 @@
   }
 
   function beautifyPersonalCenter() {
-    if (window.location.href.startsWith('https://greasyfork.org/zh-CN/users/331591')) {
+    let user = document.querySelector('.user-profile-link');
+    if (!user) {
+      return;
+    }
+    if (window.location.pathname.indexOf(user.textContent.toLowerCase()) != -1) {
       GM_addStyle(personalCenterStyle);
     }
   }
